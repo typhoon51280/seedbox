@@ -1,0 +1,16 @@
+version: '2'
+
+services: 
+
+  traefik:
+    image: traefik
+    ports: 
+      - "8080:8080"
+      - "80:80"
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /data/traefik.toml:/etc/traefik/traefik.toml
+  
+  deluge:
+    image: linuxserver/deluge
+    network_mode: "container:vpn"
